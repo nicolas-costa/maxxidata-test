@@ -9,7 +9,7 @@ services:
       POSTGRES_USER: ${DB_USERNAME}
       POSTGRES_DB: ${DB_DATABASE}
     volumes:
-      - ./database/:/docker-entrypoint-initdb.d/
+      - ./src/database/:/docker-entrypoint-initdb.d/
     ports:
       - ${DB_PORT}:5432
 networks:
