@@ -1,0 +1,14 @@
+{
+  "name": "maxxidata_test",
+  "version": "1.0.0",
+  "description": "Programming test for maxxidata",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Nícolas Costa",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
