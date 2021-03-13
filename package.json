@@ -4,6 +4,8 @@
   "description": "Programming test for maxxidata",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon --exec npm run babel-node -- ./index.js",
+    "babel-node": "babel-node --presets=es2015",
     "test": "jest"
   },
   "author": "Nícolas Costa",
@@ -15,6 +17,9 @@
     "sequelize": "^6.5.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "nodemon": "^2.0.7",
     "sequelize-cli": "^6.2.0"
   }
 }
