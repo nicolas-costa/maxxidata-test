@@ -1,8 +1,7 @@
-version: "3.8"
+version: "3.7"
 services:
   db:
-    env_file:
-      - .env
+    env_file: .env.testing
     image: mdillon/postgis:10
     environment:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
@@ -11,7 +10,13 @@ services:
     volumes:
       - ./src/database/:/docker-entrypoint-initdb.d/
     ports:
-      - ${DB_PORT}:5432
-networks:
-  app-network:
-    driver: bridge
+      - 15432:5432
+  db_testing:
+    env_file: ./.env.testing
+    image: mdillon/postgis:10
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_DB: ${DB_DATABASE}
+    ports:
+      - 15433:5432
