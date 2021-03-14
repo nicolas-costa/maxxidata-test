@@ -1,9 +1,7 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class profissional extends Model {
+import { Model } from 'sequelize';
+
+export default (sequelize, DataTypes) => {
+  class Profissional extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,10 +9,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      profissional.belongsTo(models.tipoDeProfissional);
+      Profissional.belongsTo(models.TipoDeProfissional, {foreignKey:'tipoDeProfissional'});
     }
   };
-  profissional.init({
+  Profissional.init({
     nome: DataTypes.STRING,
     telefone: DataTypes.STRING,
     email: DataTypes.STRING,
@@ -22,8 +20,9 @@ module.exports = (sequelize, DataTypes) => {
     situacao: DataTypes.BOOLEAN
   }, {
     sequelize,
-    modelName: 'profissional',
-    tableName: 'profissional'
+    modelName: 'Profissional',
+    tableName: 'profissionais'
   });
-  return profissional;
+  return Profissional;
 };
+
