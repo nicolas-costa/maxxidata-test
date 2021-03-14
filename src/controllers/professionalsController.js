@@ -1,4 +1,4 @@
-const { findAll, create } = require("../services/professionalsService");
+import { findAll, create } from '../services/professionalsService';
 
 /**
  * Retorna a lista de profissionais.

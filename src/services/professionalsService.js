@@ -1,8 +1,9 @@
 import model from "../models";
 
 export const findAll = async () => {
-  const { Profissional } = model;
   try {
+    const { Profissional } = model;
+
     return await Profissional.findAll();
   } catch (e) {
     throw e;
@@ -10,8 +11,9 @@ export const findAll = async () => {
 };
 
 export const create = async (professionalData) => {
-  const { Profissional } = model;
   try {
+    const { Profissional } = model;
+
     return await Profissional.create(professionalData);
   } catch (e) {
     throw e;
