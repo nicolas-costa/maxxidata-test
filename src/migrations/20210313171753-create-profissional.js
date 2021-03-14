@@ -8,6 +8,7 @@ export default {
         type: Sequelize.INTEGER
       },
       nome: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       telefone: {
@@ -17,9 +18,11 @@ export default {
         type: Sequelize.STRING
       },
       tipoDeProfissional: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       situacao: {
+        allowNull: false,
         type: Sequelize.BOOLEAN
       },
       createdAt: {
