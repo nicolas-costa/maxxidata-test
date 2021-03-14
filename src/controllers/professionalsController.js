@@ -1,4 +1,4 @@
-import { findAll, create } from '../services/professionalsService';
+import { findAll, create, edit } from '../services/professionalsService';
 
 /**
  * Retorna a lista de profissionais.
@@ -26,12 +26,35 @@ export const getAll = async (req, res) => {
  */
 export const createNew = async (req, res) => {
   try {
-    const { body } = req;
+    const { body = {} } = req;
 
-    const professionals = await create(body);
+    const professional = await create(body);
 
-    res.status(201).send(professionals);
+    res.status(201)
+        .send(professional);
   } catch (e) {
-    res.status(500).send(e);
+    res.status(500)
+        .send(e);
   }
 };
+
+/**
+ * Edita um profissional.
+ *
+ * @param req
+ * @param res
+ * @returns {Promise<void>}
+ */
+export const editOne = async (req, res) => {
+  try {
+    const { body = {} } = req;
+
+    const professional = await edit(body);
+
+    res.status(200)
+        .send(professional);
+  } catch (e) {
+    res.status(e.message === 'Not found.' ? 404 : 500)
+        .send(e);
+  }
+}

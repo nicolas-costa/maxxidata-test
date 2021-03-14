@@ -1,5 +1,6 @@
 import { check, validationResult } from "express-validator";
 import model from "../../models";
+import { Op } from "sequelize";
 
 export default [
   check("nome")
@@ -10,12 +11,21 @@ export default [
     .isEmail()
     .withMessage("O profissional deve ter um email único e válido.")
     .custom(async (value, { req }) => {
+      const findWhere = {};
+      if (req.method === "PUT") {
+        findWhere.where = {
+          email: {
+            [Op.ne]: value,
+          },
+        };
+      } else {
+        findWhere.where = {
+          id: value,
+        };
+      }
+
       const { Profissional } = model;
-      return Profissional.findOne({
-        where: {
-          email: value,
-        },
-      }).then((user) => {
+      return Profissional.findOne(findWhere).then((user) => {
         if (user) {
           return Promise.reject("Email já utilizado.");
         }
@@ -44,7 +54,6 @@ export default [
     .bail(),
   (req, res, next) => {
     const errors = validationResult(req);
-    console.log(errors.array());
     if (!errors.isEmpty())
       return res.status(422).json({ errors: errors.array() });
     next();

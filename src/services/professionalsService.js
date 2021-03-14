@@ -19,3 +19,23 @@ export const create = async (professionalData) => {
     throw e;
   }
 };
+
+export const edit = async (professionalData) => {
+  try {
+    const { Profissional } = model;
+    const { id = -1 } = professionalData;
+    const professional = await Profissional.update(professionalData, {
+      where: {
+        id,
+      },
+    });
+
+    if (professional[0] === 0) {
+      throw new Error("Not found.");
+    }
+
+    return professional;
+  } catch (e) {
+    throw e;
+  }
+};
