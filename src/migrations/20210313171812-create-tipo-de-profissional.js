@@ -1,5 +1,4 @@
-'use strict';
-module.exports = {
+export default {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('tiposDeProfissional', {
       id: {
@@ -8,19 +7,8 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      nome: {
-        allowNull: false,
+      descricao: {
         type: Sequelize.STRING
-      },
-      telefone: {
-        type: Sequelize.STRING
-      },
-      email: {
-        type: Sequelize.STRING
-      },
-      tipoDeProfissional: {
-        allowNull: false,
-        type: Sequelize.INTEGER
       },
       situacao: {
         allowNull: false,
