@@ -9,7 +9,7 @@ export default (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      //TipoDeProfissional.hasMany(models.Profissional);
+      TipoDeProfissional.hasMany(models.Profissional, {foreignKey: 'tipoDeProfissional'});
     }
   };
   TipoDeProfissional.init({
