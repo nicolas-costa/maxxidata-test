@@ -3,11 +3,18 @@ import request from "supertest";
 import app from "./../../index";
 import model from "../models";
 
-it("should get the list of professionals", async (done) => {
-  const res = await request(app).get("/api/professionals");
+const ENDPOINT = "/api/profissionais";
 
-  expect(res.statusCode).toEqual(200);
-  done();
+it("should get the list of professionals", async (done) => {
+  request(app)
+    .get(ENDPOINT)
+    .set("Accept", "application/json")
+    .expect("Content-Type", /json/)
+    .expect(200)
+    .end(function (err, res) {
+      if (err) return done(err);
+      return done();
+    });
 });
 
 it("should create a new professional", async (done) => {
@@ -18,11 +25,11 @@ it("should create a new professional", async (done) => {
   });
 
   request(app)
-    .post("/api/professionals")
+    .post(ENDPOINT)
     .send({
       nome: "teste",
       telefone: "999999999",
-      email: "teste@mail2.com.br",
+      email: "teste@mail212.com.br",
       tipoDeProfissional: tipoDeProfissional.dataValues.id,
       situacao: true,
     })
@@ -43,11 +50,11 @@ it("should validate the body and return 422 on invalid data", async (done) => {
   });
 
   request(app)
-    .post("/api/professionals")
+    .post(ENDPOINT)
     .send({
       nome: "teste",
       telefone: "999999999",
-      email: "testemail.com.br", // email inválido
+      email: "testemail.com.br", // invalid email
       tipoDeProfissional: tipoDeProfissional.dataValues.id,
       situacao: true,
     })
@@ -61,30 +68,30 @@ it("should validate the body and return 422 on invalid data", async (done) => {
 });
 
 it("should return 200 on successful update", async (done) => {
-    const { Profissional, TipoDeProfissional } = model;
-    const tipoDeProfissional = await TipoDeProfissional.create({
-        descricao: "teste",
-        situacao: true,
-    });
-    const profissional = await Profissional.create({
-        nome: "teste",
-        telefone: "999999999",
-        email: "teste@mail987.com.br", // email inválido
-        tipoDeProfissional: tipoDeProfissional.dataValues.id,
-        situacao: true,
-    });
+  const { Profissional, TipoDeProfissional } = model;
+  const tipoDeProfissional = await TipoDeProfissional.create({
+    descricao: "teste",
+    situacao: true,
+  });
+  const profissional = await Profissional.create({
+    nome: "teste",
+    telefone: "999999999",
+    email: "teste@mail98788.com.br",
+    tipoDeProfissional: tipoDeProfissional.dataValues.id,
+    situacao: true,
+  });
 
-    request(app)
-        .put("/api/professionals")
-        .send({
-            ...profissional.dataValues,
-            nome: 'teste987'
-        })
-        .set("Accept", "application/json")
-        .expect("Content-Type", /json/)
-        .expect(200)
-        .end(function (err, res) {
-            if (err) return done(err);
-            return done();
-        });
+  request(app)
+    .put(`${ENDPOINT}/${profissional.dataValues.id}`)
+    .send({
+      ...profissional.dataValues,
+      nome: "teste987",
+    })
+    .set("Accept", "application/json")
+    .expect("Content-Type", /json/)
+    .expect(200)
+    .end(function (err, res) {
+      if (err) return done(err);
+      return done();
+    });
 });

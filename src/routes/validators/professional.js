@@ -14,13 +14,14 @@ export default [
       const findWhere = {};
       if (req.method === "PUT") {
         findWhere.where = {
-          email: {
-            [Op.ne]: value,
+          email: value,
+          id: {
+            [Op.ne]: req.params.id,
           },
         };
       } else {
         findWhere.where = {
-          id: value,
+          email: value,
         };
       }
 
