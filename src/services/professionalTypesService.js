@@ -20,10 +20,9 @@ export const create = async (professionalTypeData) => {
   }
 };
 
-export const edit = async (professionalTypeData) => {
+export const edit = async (id, professionalTypeData) => {
   try {
     const { TipoDeProfissional } = model;
-    const { id = -1 } = professionalTypeData;
     const profType = await TipoDeProfissional.update(professionalTypeData, {
       where: {
         id,

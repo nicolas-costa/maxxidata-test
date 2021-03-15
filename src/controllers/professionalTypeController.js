@@ -48,8 +48,9 @@ export const createNew = async (req, res) => {
 export const editOne = async (req, res) => {
   try {
     const { body = {} } = req;
+    const { id = -1 } = req.params;
 
-    const professionalTypes = await edit(body);
+    const professionalTypes = await edit(id, body);
 
     res.status(200)
         .send(professionalTypes);

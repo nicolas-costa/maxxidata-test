@@ -7,7 +7,7 @@ export default [
         .bail(),
     check("situacao")
         .isBoolean()
-        .withMessage("O profissional deve ter a situação como verdadeiro ou falso.")
+        .withMessage("O tipo de  profissional deve ter a situação como verdadeiro ou falso.")
         .bail(),
     (req, res, next) => {
         const errors = validationResult(req);
