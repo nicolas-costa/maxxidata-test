@@ -3,7 +3,7 @@ import request from "supertest";
 import app from "../../index";
 import model from "../models";
 
-const ENDPOINT = "/api/tipo-de-profissional";
+const ENDPOINT = "/api/tipos-de-profissional";
 
 it("should get the list of professional types", async (done) => {
   request(app)
@@ -28,7 +28,6 @@ it("should create a new professional type", async (done) => {
     .expect("Content-Type", /json/)
     .expect(201)
     .end(function (err, res) {
-      console.log(res.body);
       if (err) return done(err);
       return done();
     });
@@ -67,7 +66,6 @@ it("should return 200 on successful professional type update", async (done) => {
     .expect("Content-Type", /json/)
     .expect(200)
     .end(function (err, res) {
-      console.log(res);
       if (err) return done(err);
       return done();
     });

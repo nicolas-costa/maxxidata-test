@@ -23,9 +23,12 @@ consign({ verbose: false }, { cwd: "src" })
 
 const port = process.env.PORT || 3000;
 
-app.listen(port, () => {
-  console.log("listening on", port);
-});
+// Don't run while running tests.
+if(process.env.NODE_ENV != "test") {
+  app.listen(port, () => {
+    console.log("listening on", port);
+  })
+}
 
 app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
