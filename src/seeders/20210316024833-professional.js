@@ -19,14 +19,17 @@ export default {
           email: "(50) 99190-5050",
           tipoDeProfissional: 1,
           situacao: true,
+          createdAt: new Date(),
+          updatedAt: new Date(),
         },
         {
           nome: "Jane Doe",
           telefone: "",
           email: "(50) 99190-5050",
           tipoDeProfissional: 2,
-          descricao: "Programador",
           situacao: true,
+          createdAt: new Date(),
+          updatedAt: new Date(),
         },
       ],
       {}

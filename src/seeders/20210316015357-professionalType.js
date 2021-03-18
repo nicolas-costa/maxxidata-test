@@ -16,11 +16,15 @@ export default {
           id: 1,
           descricao: "Medico",
           situacao: true,
+          createdAt: new Date(),
+          updatedAt: new Date(),
         },
         {
           id: 2,
           descricao: "Programador",
           situacao: true,
+          createdAt: new Date(),
+          updatedAt: new Date(),
         },
       ],
       {}
