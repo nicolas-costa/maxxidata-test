@@ -11,7 +11,8 @@
     "sequelize": "npx sequelize-cli db:migrate",
     "test": "cross-env NODE_ENV=test jest --maxWorkers=1",
     "migrate": "cross-env NODE_ENV=test && npx sequelize-cli db:migrate",
-    "pretest": "cross-env NODE_ENV=test npm run migrate",
+    "migrate:reset": "npx sequelize-cli db:migrate:undo:all && npm run migrate",
+    "pretest": "cross-env NODE_ENV=test npm run migrate:reset",
     "swagger-autogen": "node swagger.js"
   },
   "author": "Nícolas Costa",
