@@ -2,9 +2,13 @@ import model from "../models";
 
 export const findAll = async () => {
   try {
-    const { Profissional } = model;
+    const { Profissional, TipoDeProfissional } = model;
 
-    return await Profissional.findAll();
+    return await Profissional.findAll({
+      include: {
+        model: TipoDeProfissional
+      }
+    });
   } catch (e) {
     throw e;
   }
