@@ -3,6 +3,7 @@ import consign from "consign";
 import bodyParser from "body-parser";
 import swaggerUi from 'swagger-ui-express';
 import swaggerFile from './swagger_output';
+import cors from 'cors';
 const app = express();
 require("dotenv").config({
   path: process.env.NODE_ENV === "test" ? ".env.testing" : ".env",
@@ -10,6 +11,7 @@ require("dotenv").config({
 
 const jsonParser = bodyParser.json();
 app.use(jsonParser);
+app.use(cors());
 
 consign({ verbose: false }, { cwd: "src" })
   .include("./src/models/index.js")
